@@ -4,8 +4,7 @@
   "package": "org.theplaceholder.sonicboom.mixin",
   "compatibilityLevel": "JAVA_8",
   "refmap": "sonicboom.refmap.json",
-  "mixins": [
-  ],
+  "mixins": [],
   "client": [
     "EntityLivingMixin"
   ],

@@ -1,7 +1,7 @@
 package org.theplaceholder.sonicboom.interfaces;
 
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.util.math.vector.Vector3d;
 
 public interface IEntity {
-    Vec3 getLastPos();
+    Vector3d getLastPos();
 }

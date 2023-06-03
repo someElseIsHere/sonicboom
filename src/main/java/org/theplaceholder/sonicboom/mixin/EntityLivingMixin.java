@@ -1,10 +1,10 @@
 package org.theplaceholder.sonicboom.mixin;
 
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -14,31 +14,35 @@ import org.theplaceholder.sonicboom.interfaces.IEntity;
 
 @Mixin(LivingEntity.class)
 public abstract class EntityLivingMixin extends Entity implements IEntity {
-    public EntityLivingMixin(EntityType<?> p_19870_, Level p_19871_) {
-        super(p_19870_, p_19871_);
+
+    public EntityLivingMixin(EntityType<?> entityTypeIn, World worldIn) {
+        super(entityTypeIn, worldIn);
     }
 
-    private Vec3 lastPos;
+    private Vector3d lastPos;
     public boolean isSonic = false;
 
     @Override
-    public Vec3 getLastPos() {
+    public Vector3d getLastPos() {
         return lastPos;
     }
 
-    @Inject(at = @At("HEAD"), method = "aiStep()V")
+    @Inject(at = @At("HEAD"), method = "livingTick()V")
     public void aiStep(CallbackInfo info) {
-        lastPos = this.position();
+        lastPos = this.getPositionVec();
     }
 
     @Inject(at = @At("HEAD"), method = "tick()V")
     public void tick(CallbackInfo info) {
-        if(lastPos == null) lastPos = this.position();
-        if(!isSonic && Utils.getSpeed(this) > 35){
-            Utils.explode(this);
-            isSonic = true;
+        if (lastPos == null) return;
+
+        if (this.world.isRemote) {
+            if (!isSonic && Utils.getSpeed(this) > 50) {
+                Utils.explode(this);
+                isSonic = true;
+            }
+            if (Utils.getSpeed(this) < 1)
+                isSonic = false;
         }
-        if(Utils.getSpeed(this) < 30)
-            isSonic = false;
     }
 }

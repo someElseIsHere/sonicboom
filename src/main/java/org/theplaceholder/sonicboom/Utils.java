@@ -1,19 +1,23 @@
 package org.theplaceholder.sonicboom;
 
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.world.ClientWorld;
+import net.minecraft.entity.Entity;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import org.theplaceholder.sonicboom.interfaces.IEntity;
 
 public class Utils {
     public static double getSpeed(Entity entity){
-        return ((IEntity)entity).getLastPos().distanceTo(entity.position()) * 20 * 1;
+        return ((IEntity)entity).getLastPos().distanceTo(entity.getPositionVec()) * 20 * 1;
     }
 
     public static void explode(Entity entity){
-        entity.level.addParticle(ParticleTypes.EXPLOSION_EMITTER, entity.getX(), entity.getY(), entity.getZ(), 1.0D, 0.0D, 0.0D);
-        entity.level.addParticle(ParticleTypes.EXPLOSION, entity.getX(), entity.getY(), entity.getZ(), 1.0D, 0.0D, 0.0D);
-        entity.level.playLocalSound(entity.blockPosition(), SoundEvents.GENERIC_EXPLODE, SoundSource.PLAYERS,4.0F, 1, false);
+            ClientWorld world = (ClientWorld) entity.world;
+
+            world.addParticle(ParticleTypes.EXPLOSION_EMITTER, entity.getPosX(), entity.getPosZ(), entity.getPosZ(), 1.0D, 0.0D, 0.0D);
+            world.addParticle(ParticleTypes.EXPLOSION, entity.getPosX(), entity.getPosZ(), entity.getPosZ(), 1.0D, 0.0D, 0.0D);
+            world.playSound(Minecraft.getInstance().player, entity.getPosition(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.PLAYERS, 4.0F, 1);
     }
 }
