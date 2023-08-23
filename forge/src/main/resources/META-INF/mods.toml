@@ -1,35 +1,28 @@
 modLoader = "javafml"
-loaderVersion = "[45,)"
-#issueTrackerURL = ""
-license = "Insert License Here"
+loaderVersion = "[47,)"
+issueTrackerURL = "https://github.com/someElseIsHere/sonicboom/issues"
+license = "GPL-3.0"
 
 [[mods]]
-modId = "examplemod"
+modId = "sonicboom"
 version = "${version}"
-displayName = "Example Mod"
-authors = "Me!"
+displayName = "Sonic Boom"
+authors = "thePlaceholder"
 description = '''
-This is an example description! Tell everyone what your mod is about!
+a useless client side mod
 '''
-#logoFile = ""
+logoFile = "../assets/sonicboom/icon.png"
 
-[[dependencies.examplemod]]
+[[dependencies.sonicboom]]
 modId = "forge"
 mandatory = true
-versionRange = "[45,)"
+versionRange = "[47,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.examplemod]]
+[[dependencies.sonicboom]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.19.4,)"
+versionRange = "[1.20.1,)"
 ordering = "NONE"
-side = "BOTH"
-
-[[dependencies.examplemod]]
-modId = "architectury"
-mandatory = true
-versionRange = "[8.1.79,)"
-ordering = "AFTER"
 side = "BOTH"

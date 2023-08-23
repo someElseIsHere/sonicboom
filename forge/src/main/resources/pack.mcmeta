@@ -1,6 +1,7 @@
 {
   "pack": {
-    "description": "Example Mod",
-    "pack_format": 13
-  }
+    "description": "Sonic Boom",
+    "pack_format": 15
+  },
+  "_comment": "I love useless files."
 }

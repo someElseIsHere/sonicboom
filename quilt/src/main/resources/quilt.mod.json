@@ -1,28 +1,23 @@
 {
   "schema_version": 1,
   "mixin": [
-    "examplemod.mixins.json",
-    "examplemod-common.mixins.json"
+    "sonicboom.mixins.json"
   ],
   "quilt_loader": {
     "group": "${group}",
-    "id": "examplemod",
+    "id": "sonicboom",
     "version": "${version}",
-    "name": "Example Mod",
-    "description": "This is an example description! Tell everyone what your mod is about!",
-    "authors": ["Me!"],
+    "name": "Sonic Boom",
+    "description": "a useless client side mod",
+    "authors": ["thePlaceholder"],
     "contact": {
-      "sources": "https://github.com/architectury/architectury-templates"
+      "sources": "https://github.com/someElseIsHere/sonicboom"
     },
-    "license": "Insert License Here",
-    "icon": "assets/examplemod/icon.png",
+    "license": "GPL-3.0",
+    "icon": "assets/sonicboom/icon.png",
     "intermediate_mappings": "net.fabricmc:intermediary",
     "environment": "*",
-    "entrypoints": {
-      "init": [
-        "net.examplemod.quilt.ExampleModQuilt"
-      ]
-    },
+    "entrypoints": {},
     "depends": [
       {
         "id": "quilt_loader",
@@ -34,11 +29,7 @@
       },
       {
         "id": "minecraft",
-        "version": ">=1.19.4"
-      },
-      {
-        "id": "architectury",
-        "version": ">=8.1.79"
+        "version": ">=1.20.1"
       }
     ]
   }
