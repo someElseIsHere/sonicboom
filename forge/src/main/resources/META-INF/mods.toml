@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[47,)"
+loaderVersion = "[48,)"
 issueTrackerURL = "https://github.com/someElseIsHere/sonicboom/issues"
 license = "GPL-3.0"
 
@@ -16,13 +16,13 @@ logoFile = "../assets/sonicboom/icon.png"
 [[dependencies.sonicboom]]
 modId = "forge"
 mandatory = true
-versionRange = "[47,)"
+versionRange = "[48,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.sonicboom]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.20.1,)"
+versionRange = "[1.20.2,)"
 ordering = "NONE"
 side = "BOTH"
