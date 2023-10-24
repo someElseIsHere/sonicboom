@@ -16,7 +16,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "org.theplaceholder.sonicboom.SonicBoom"
+      "org.theplaceholder.sonicboom.SonicBoomFabric"
     ]
   },
   "mixins": [
