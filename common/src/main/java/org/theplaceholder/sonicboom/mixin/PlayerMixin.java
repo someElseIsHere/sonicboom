@@ -10,7 +10,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.theplaceholder.sonicboom.Utils;
-import org.theplaceholder.sonicboom.interfaces.IPlayer;
+import org.theplaceholder.sonicboom.IPlayer;
+import org.theplaceholder.sonicboom.config.Config;
 
 @Mixin(Player.class)
 public abstract class PlayerMixin extends LivingEntity implements IPlayer {
@@ -36,11 +37,11 @@ public abstract class PlayerMixin extends LivingEntity implements IPlayer {
         if(!this.isFallFlying()) return;
 
         if(lastPos == null) lastPos = this.position();
-        if(!isSonic && Utils.getSpeed(this) > 35){
+        if(!isSonic && Utils.getSpeed(this) > Config.getExplosionSpeed()){
             Utils.explode(this);
             isSonic = true;
         }
-        if(Utils.getSpeed(this) < 30)
+        if(Utils.getSpeed(this) < Config.getExplosionThresholdSpeed())
             isSonic = false;
     }
 }

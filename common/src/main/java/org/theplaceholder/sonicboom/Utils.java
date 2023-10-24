@@ -5,7 +5,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
-import org.theplaceholder.sonicboom.interfaces.IPlayer;
 
 public class Utils {
     public static double getSpeed(Entity entity){

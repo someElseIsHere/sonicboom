@@ -14,11 +14,16 @@
   "license": "GPL-3.0",
   "icon": "assets/sonicboom/icon.png",
   "environment": "*",
-  "entrypoints": {},
+  "entrypoints": {
+    "main": [
+      "org.theplaceholder.sonicboom.SonicBoom"
+    ]
+  },
   "mixins": [
     "sonicboom.mixins.json"
   ],
   "depends": {
-    "minecraft": ">=1.20.2"
+    "minecraft": ">=1.20.2",
+    "cloth-config": "*"
   }
 }
