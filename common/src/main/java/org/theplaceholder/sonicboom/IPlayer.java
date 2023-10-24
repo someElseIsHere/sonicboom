@@ -1,4 +1,4 @@
-package org.theplaceholder.sonicboom.interfaces;
+package org.theplaceholder.sonicboom;
 
 import net.minecraft.world.phys.Vec3;
 
