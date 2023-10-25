@@ -2,3 +2,9 @@
 /.gradle/
 /build/
 /build/classes/java/main/
+/common/build/
+/fabric/build/
+/forge/build/
+/common/.gradle/
+/fabric/.gradle/
+/forge/.gradle/

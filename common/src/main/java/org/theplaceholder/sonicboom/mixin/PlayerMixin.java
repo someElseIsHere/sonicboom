@@ -13,6 +13,8 @@ import org.theplaceholder.sonicboom.SBConfig;
 import org.theplaceholder.sonicboom.Utils;
 import org.theplaceholder.sonicboom.IPlayer;
 
+import static org.theplaceholder.sonicboom.SonicBoom.isClothConfigPresent;
+
 @Mixin(Player.class)
 public abstract class PlayerMixin extends LivingEntity implements IPlayer {
 
@@ -37,11 +39,11 @@ public abstract class PlayerMixin extends LivingEntity implements IPlayer {
         if(!this.isFallFlying()) return;
 
         if(lastPos == null) lastPos = this.position();
-        if(!isSonic && Utils.getSpeed(this) > SBConfig.getExplosionSpeed()){
+        if(!isSonic && Utils.getSpeed(this) > isClothConfigPresent ? SBConfig.getExplosionSpeed() : 35f){
             Utils.explode(this);
             isSonic = true;
         }
-        if(Utils.getSpeed(this) < SBConfig.getExplosionThresholdSpeed())
+        if(Utils.getSpeed(this) < isClothConfigPresent ? SBConfig.getExplosionThresholdSpeed() : 30f)
             isSonic = false;
     }
 }
