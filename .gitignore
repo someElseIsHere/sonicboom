@@ -8,3 +8,6 @@
 /common/.gradle/
 /fabric/.gradle/
 /forge/.gradle/
+/common/run/
+/fabric/run/
+/forge/run/

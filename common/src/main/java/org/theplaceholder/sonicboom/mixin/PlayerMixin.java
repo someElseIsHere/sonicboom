@@ -39,11 +39,11 @@ public abstract class PlayerMixin extends LivingEntity implements IPlayer {
         if(!this.isFallFlying()) return;
 
         if(lastPos == null) lastPos = this.position();
-        if(!isSonic && Utils.getSpeed(this) > isClothConfigPresent ? SBConfig.getExplosionSpeed() : 35f){
+        if(!isSonic && Utils.getSpeed(this) > (isClothConfigPresent ? SBConfig.getExplosionSpeed() : 35f)){
             Utils.explode(this);
             isSonic = true;
         }
-        if(Utils.getSpeed(this) < isClothConfigPresent ? SBConfig.getExplosionThresholdSpeed() : 30f)
+        if(Utils.getSpeed(this) < (isClothConfigPresent ? SBConfig.getExplosionThresholdSpeed() : 30f))
             isSonic = false;
     }
 }
