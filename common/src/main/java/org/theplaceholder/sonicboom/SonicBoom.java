@@ -4,7 +4,7 @@ public class SonicBoom {
     public static boolean isClothConfigPresent;
 
     public static void init() {
-        isClothConfigPresent = ClothConfigCompatChecker.isClothConfigPresent();
+        isClothConfigPresent = Utils.isClothConfigPresent();
         if(isClothConfigPresent)
             SBConfig.register();
     }

@@ -17,4 +17,13 @@ public class Utils {
         level.addParticle(ParticleTypes.EXPLOSION, entity.getX(), entity.getY(), entity.getZ(), 1.0D, 0.0D, 0.0D);
         level.playLocalSound(entity.blockPosition(), SoundEvents.GENERIC_EXPLODE, SoundSource.PLAYERS,4.0F, 1, false);
     }
+
+    public static boolean isClothConfigPresent() {
+        try {
+            Class.forName("me.shedaniel.autoconfig.AutoConfig");
+            return true;
+        } catch (ClassNotFoundException e) {
+            return false;
+        }
+    }
 }
