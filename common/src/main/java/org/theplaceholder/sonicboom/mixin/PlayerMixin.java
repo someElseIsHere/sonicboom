@@ -1,5 +1,8 @@
 package org.theplaceholder.sonicboom.mixin;
 
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -9,41 +12,49 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.theplaceholder.sonicboom.SBConfig;
-import org.theplaceholder.sonicboom.Utils;
-import org.theplaceholder.sonicboom.IPlayer;
 
-import static org.theplaceholder.sonicboom.SonicBoom.isClothConfigPresent;
+import static org.theplaceholder.sonicboom.SonicBoom.*;
 
 @Mixin(Player.class)
-public abstract class PlayerMixin extends LivingEntity implements IPlayer {
+public abstract class PlayerMixin extends LivingEntity {
 
-    private Vec3 lastPos;
-    public boolean isSonic = false;
+    private Vec3 sonicBoom$lastPos;
+    public boolean sonicBoom$isSonic = false;
 
     protected PlayerMixin(EntityType<? extends LivingEntity> entityType, Level level) {
         super(entityType, level);
     }
 
-    @Override
-    public Vec3 getLastPos() {
-        return lastPos;
-    }
     @Inject(at = @At("HEAD"), method = "aiStep()V")
     public void aiStep(CallbackInfo info) {
-        lastPos = this.position();
+        sonicBoom$lastPos = this.position();
     }
     @Inject(at = @At("HEAD"), method = "tick()V")
     public void tick(CallbackInfo info) {
         if(!this.level().isClientSide) return;
         if(!this.isFallFlying()) return;
 
-        if(lastPos == null) lastPos = this.position();
-        if(!isSonic && Utils.getSpeed(this) > (isClothConfigPresent ? SBConfig.getExplosionSpeed() : 35f)){
-            Utils.explode(this);
-            isSonic = true;
+        if(sonicBoom$lastPos == null) sonicBoom$lastPos = this.position();
+        if(!sonicBoom$isSonic && sonicBoom$getSpeed() > explosionSpeed){
+            sonicBoom$explode();
+            sonicBoom$isSonic = true;
         }
-        if(Utils.getSpeed(this) < (isClothConfigPresent ? SBConfig.getExplosionThresholdSpeed() : 30f))
-            isSonic = false;
+        if(sonicBoom$getSpeed() < explosionThresholdSpeed)
+            sonicBoom$isSonic = false;
+    }
+
+    private double sonicBoom$getSpeed(){
+        return this.sonicBoom$getLastPos().distanceTo(position()) * 20 * 1;
+    }
+
+    private void sonicBoom$explode(){
+        Level level = this.level();
+        level.addParticle(ParticleTypes.EXPLOSION_EMITTER, this.getX(), this.getY(), this.getZ(), 1.0D, 0.0D, 0.0D);
+        level.addParticle(ParticleTypes.EXPLOSION, this.getX(), this.getY(), this.getZ(), 1.0D, 0.0D, 0.0D);
+        level.playLocalSound(this.blockPosition(), SoundEvents.GENERIC_EXPLODE, SoundSource.PLAYERS,4.0F, 1, false);
+    }
+
+    public Vec3 sonicBoom$getLastPos() {
+        return sonicBoom$lastPos;
     }
 }

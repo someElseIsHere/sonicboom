@@ -1,7 +1,6 @@
 {
   "pack": {
     "description": "Sonic Boom",
-    "pack_format": 18
-  },
-  "_comment": "I love useless files."
+    "pack_format": 15
+  }
 }
