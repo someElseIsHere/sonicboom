@@ -5,7 +5,6 @@ import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 
 public class SonicBoom {
     public static boolean isClothConfigPresent;
-    public static float explosionSpeed = 35f;
     public static float explosionThresholdSpeed = 30f;
 
     public static void init() {
