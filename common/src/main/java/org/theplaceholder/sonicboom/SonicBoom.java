@@ -1,12 +1,12 @@
 package org.theplaceholder.sonicboom;
 
 public class SonicBoom {
-    public static float explosionSpeed = 35f;
-    public static float explosionThresholdSpeed = 30f;
+    public static float EXPLOSION_SPEED = 35f;
+    public static float EXPLOSION_THRESHOLD_SPEED = 30f;
 
     public static void init() {
         if(isClothConfigPresent())
-            Config.register();
+            SBConfig.register();
     }
 
     public static boolean isClothConfigPresent() {
