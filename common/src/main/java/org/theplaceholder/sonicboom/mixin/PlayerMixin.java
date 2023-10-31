@@ -19,7 +19,7 @@ import static org.theplaceholder.sonicboom.SonicBoom.*;
 public abstract class PlayerMixin extends LivingEntity {
 
     private Vec3 sonicBoom$lastPos;
-    public boolean sonicBoom$isSonic = false;
+    private boolean sonicBoom$isSonic = false;
 
     protected PlayerMixin(EntityType<? extends LivingEntity> entityType, Level level) {
         super(entityType, level);
