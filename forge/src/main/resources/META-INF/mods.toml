@@ -16,13 +16,13 @@ logoFile = "../assets/sonicboom/icon.png"
 [[dependencies.sonicboom]]
 modId = "forge"
 mandatory = true
-versionRange = "[48,)"
+versionRange = "[49,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.sonicboom]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.20.2,)"
+versionRange = "[1.20.4,)"
 ordering = "NONE"
 side = "BOTH"
